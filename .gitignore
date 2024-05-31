@@ -7,8 +7,8 @@ Library/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
+Logs/
+UserSettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
