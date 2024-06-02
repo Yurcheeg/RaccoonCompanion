@@ -11,9 +11,13 @@ public class DrainScript : MonoBehaviour
 {
 
     float hunger;
+    float maxValue = 100;
     float cleanliness;
     float happiness;
-    [SerializeField] public TMP_Text hungerText;
+    public CharacterAttributes characterHunger;//ew
+    public CharacterAttributes characterCleanliness;
+    public CharacterAttributes characterHappiness;
+    //public TMP_Text hungerText;
     private const float drainRate = 100f/86400f; // 100hunger would drain over 24 hours
     private void Start()
     {
@@ -34,8 +38,12 @@ public class DrainScript : MonoBehaviour
         }
         cleanliness = Mathf.Max(0, cleanliness-drainRate);
         happiness = Mathf.Max(0, happiness-drainRate);
-        Debug.Log($"Hunger after drain: {hunger}");  // Debug log for hunger value
-        UpdateHungerText();
+        Debug.Log($"Hunger after drain: {hunger}");
+        Debug.Log($"Cleanliness after drain: {cleanliness}");
+        //UpdateHungerText();
+        characterHunger.SetValue(maxValue - hunger);
+        characterCleanliness.SetValue(maxValue - cleanliness);//i saw a problem the day after i wrote this code
+        characterHappiness.SetValue(maxValue - happiness);
         SaveSystem();
     }
     private void OnApplicationPause(bool pause)
@@ -74,21 +82,21 @@ public class DrainScript : MonoBehaviour
             hunger = Mathf.Max(0, hunger - drainRate * secondsAway);
             cleanliness = Mathf.Max(0, cleanliness - drainRate * secondsAway);
             happiness = Mathf.Max(0, happiness - drainRate * secondsAway);
-            Debug.Log($"Hunger after time away: {hunger}");  // Debug log for hunger value after time away
+            Debug.Log($"Hunger after time away: {hunger}"); 
         }
 
     }
-    private void UpdateHungerText()
+    /*private void UpdateHungerText()
     {
-        hungerText.text = "hunger: " + hunger;
-        Debug.Log($"Updated hunger text: {hungerText.text}");  // Debug log for updated text
-    }
+        //hungerText.text = "hunger: " + hunger;
+        Debug.Log($"Updated hunger text: {hungerText.text}");  
+    }*/
 
     private void ResetValues()
     {
-        hunger = 100;
-        cleanliness = 100;
-        happiness = 100;
+        hunger = maxValue;
+        cleanliness = maxValue;
+        happiness = maxValue;
         PlayerPrefs.SetFloat("Hunger", hunger);
         PlayerPrefs.SetFloat("Cleanliness", cleanliness);
         PlayerPrefs.SetFloat("Happiness", happiness);
