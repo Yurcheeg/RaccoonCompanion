@@ -4,8 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using System;
 using System.Data;
-using TMPro.EditorUtilities;
-using TMPro;
+
 
 public class DrainScript : MonoBehaviour
 {
