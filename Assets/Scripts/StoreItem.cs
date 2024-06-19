@@ -1,4 +1,7 @@
-using System.Collections;
+
+//it's used to get the name of the item and putting it into the store popup. also id i think.
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,5 +21,5 @@ public class StoreItem : MonoBehaviour
     {
         storePopUp.UpdatePopUpText(itemName); //makes the text mention the item that you are planning on buying
     }
-}
+}*/
 

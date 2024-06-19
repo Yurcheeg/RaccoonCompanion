@@ -4,21 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
+using System;
+
 public class StorePopUp : MonoBehaviour
 {
-    public TMP_Text popUpItemName;
-    private int cost;
+    // public TMP_Text popUpItemName;
+    FoodPrice foodPrice;
     public Coin coin;
+    [SerializeField] private List<Button> buttons;
+    //public Food food;
+    public int buttonId;
 
-    public void UpdatePopUpText(StoreItem item)
+    private void Awake()
     {
-        popUpItemName.text = "Are you sure you want to buy " + item.itemName;
-        cost = item.itemCost;
-        
+        foodPrice = FindObjectOfType<FoodPrice>();
+        coin = FindObjectOfType<Coin>();
     }
-    public void OnButtonClick()
+
+    public void GetButtonId(int buttonId)
     {
-        coin.BalanceCheck(cost);
+        this.buttonId = buttonId;
+        Debug.Log($"clicked {buttonId}");
+        Debug.Log($"clicked {this.buttonId}");
+    }
+
+    public void BuyItem()
+    {
+        Debug.Log($"bought: {buttonId}");
+        foodPrice.BuyItem(buttonId);
     }
     
 
